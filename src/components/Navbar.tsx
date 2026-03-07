@@ -7,7 +7,7 @@ const navLinks = [
   { label: "HOME", path: "/" },
   { label: "TOPICS", path: "/topics" },
   { label: "MODULES", path: "/modules" },
-  { label: "ANALYTICS", path: "/analytics" },
+  
   { label: "ABOUT", path: "/about" },
   { label: "FAQ", path: "/faq" },
 ];
