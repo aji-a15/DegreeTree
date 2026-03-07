@@ -8,7 +8,7 @@ import Topics from "./pages/Topics";
 import Modules from "./pages/Modules";
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
-import Analytics from "./pages/Analytics";
+
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
@@ -27,7 +27,7 @@ const App = () => (
           <Route path="/modules" element={<Modules />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/analytics" element={<Analytics />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
