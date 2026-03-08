@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight, ArrowLeft } from "lucide-react";
+import { ChevronDown, ArrowRight, ArrowLeft, Briefcase } from "lucide-react";
 import { useState } from "react";
 
 interface Module {
