@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, TreeDeciduous } from "lucide-react";
+import { Menu, X, TreeDeciduous, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { label: "HOME", path: "/" },
   { label: "TOPICS", path: "/topics" },
   { label: "MODULES", path: "/modules" },
-  
   { label: "ABOUT", path: "/about" },
   { label: "FAQ", path: "/faq" },
 ];
@@ -15,17 +15,16 @@ const navLinks = [
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <nav className="sticky top-0 z-50 bg-nav-bg/95 backdrop-blur-sm border-b border-border">
       <div className="container flex items-center justify-between h-16">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <TreeDeciduous className="h-7 w-7 text-primary" />
           <span className="text-xl font-serif font-bold text-primary">DegreeTree</span>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -40,17 +39,24 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Auth Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="navOutline" size="sm" asChild>
-            <Link to="/login">Login</Link>
-          </Button>
-          <Button variant="navFilled" size="sm" asChild>
-            <Link to="/signup">Sign Up</Link>
-          </Button>
+          {user ? (
+            <Button variant="navOutline" size="sm" onClick={signOut}>
+              <LogOut className="h-4 w-4 mr-1" />
+              Log Out
+            </Button>
+          ) : (
+            <>
+              <Button variant="navOutline" size="sm" asChild>
+                <Link to="/login">Login</Link>
+              </Button>
+              <Button variant="navFilled" size="sm" asChild>
+                <Link to="/signup">Sign Up</Link>
+              </Button>
+            </>
+          )}
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -59,7 +65,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden bg-nav-bg border-t border-border px-6 py-4 space-y-4">
           {navLinks.map((link) => (
@@ -75,12 +80,21 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex gap-3 pt-2">
-            <Button variant="navOutline" size="sm" asChild>
-              <Link to="/login" onClick={() => setMobileOpen(false)}>Login</Link>
-            </Button>
-            <Button variant="navFilled" size="sm" asChild>
-              <Link to="/signup" onClick={() => setMobileOpen(false)}>Sign Up</Link>
-            </Button>
+            {user ? (
+              <Button variant="navOutline" size="sm" onClick={() => { signOut(); setMobileOpen(false); }}>
+                <LogOut className="h-4 w-4 mr-1" />
+                Log Out
+              </Button>
+            ) : (
+              <>
+                <Button variant="navOutline" size="sm" asChild>
+                  <Link to="/login" onClick={() => setMobileOpen(false)}>Login</Link>
+                </Button>
+                <Button variant="navFilled" size="sm" asChild>
+                  <Link to="/signup" onClick={() => setMobileOpen(false)}>Sign Up</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}
