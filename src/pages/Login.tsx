@@ -1,45 +1,37 @@
-import { useState } from "react";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMessage("");
+
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement).value;
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setMessage(data.message || "Login failed");
-        return;
+      if (response.ok) {
+        alert("Login successful");
+        window.location.href = "/modules";
+      } else {
+        alert(data.message || "Login failed");
       }
-
-      setMessage("Login successful");
-      console.log("Logged in user:", data.user);
-
-      navigate("/modules");
     } catch (error) {
-      setMessage("Something went wrong");
-      console.error(error);
+      console.error("Login error:", error);
+      alert("Login failed");
     }
   };
 
@@ -64,8 +56,6 @@ const Login = () => {
                 type="email"
                 placeholder="firstname.lastname.year@mumail.ie"
                 className="bg-muted border-border"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -76,14 +66,8 @@ const Login = () => {
                 type="password"
                 placeholder="••••••••"
                 className="bg-muted border-border"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-
-            {message && (
-              <p className="text-sm text-center text-muted-foreground">{message}</p>
-            )}
 
             <Button type="submit" className="w-full" size="lg">
               Log In
