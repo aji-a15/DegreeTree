@@ -110,7 +110,7 @@ const modules: Module[] = [
   },
   {
     code: "CS230", name: "Web Information Processing", year: 2,
-    topics: ["Frameworks", "Web services", "Database-driven", "Web applications", "Web services"],
+    topics: ["Frameworks", "Web services", "Database-driven", "Web applications", "REST APIs"],
     description: "Design and build a dynamic, database-driven, interactive browser-based web-based applications.",
     feedsFrom: ["CS161", "CS130"], leadsTo: ["CS264", "CS353"],
     careers: ["Full-Stack Developer", "Web Developer", "Frontend Engineer"],
