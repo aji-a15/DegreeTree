@@ -3,14 +3,20 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const email = (document.getElementById("email") as HTMLInputElement).value;
-    const password = (document.getElementById("password") as HTMLInputElement).value;
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -23,15 +29,17 @@ const Login = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert("Login successful");
-        window.location.href = "/modules";
-      } else {
-        alert(data.message || "Login failed");
+      if (!response.ok) {
+        setMessage(data.message || "Login failed");
+        return;
       }
+
+      login(data.user);
+      setMessage("Login successful");
+      navigate("/modules");
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed");
+      setMessage("Login failed");
     }
   };
 
@@ -56,6 +64,8 @@ const Login = () => {
                 type="email"
                 placeholder="firstname.lastname.year@mumail.ie"
                 className="bg-muted border-border"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -66,8 +76,14 @@ const Login = () => {
                 type="password"
                 placeholder="••••••••"
                 className="bg-muted border-border"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
+            {message && (
+              <p className="text-sm text-center text-muted-foreground">{message}</p>
+            )}
 
             <Button type="submit" className="w-full" size="lg">
               Log In
