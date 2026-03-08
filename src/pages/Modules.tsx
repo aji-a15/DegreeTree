@@ -11,6 +11,7 @@ interface Module {
   description: string;
   feedsFrom: string[];
   leadsTo: string[];
+  careers: string[];
 }
 
 const modules: Module[] = [
