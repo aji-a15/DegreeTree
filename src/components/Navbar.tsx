@@ -1,8 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, TreeDeciduous, LogOut } from "lucide-react";
+import { Menu, X, TreeDeciduous } from "lucide-react";
 import { useState } from "react";
-import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { label: "HOME", path: "/" },
@@ -15,7 +14,6 @@ const navLinks = [
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user, signOut } = useAuth();
 
   return (
     <nav className="sticky top-0 z-50 bg-nav-bg/95 backdrop-blur-sm border-b border-border">
@@ -40,21 +38,12 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          {user ? (
-            <Button variant="navOutline" size="sm" onClick={signOut}>
-              <LogOut className="h-4 w-4 mr-1" />
-              Log Out
-            </Button>
-          ) : (
-            <>
-              <Button variant="navOutline" size="sm" asChild>
-                <Link to="/login">Login</Link>
-              </Button>
-              <Button variant="navFilled" size="sm" asChild>
-                <Link to="/signup">Sign Up</Link>
-              </Button>
-            </>
-          )}
+          <Button variant="navOutline" size="sm" asChild>
+            <Link to="/login">Login</Link>
+          </Button>
+          <Button variant="navFilled" size="sm" asChild>
+            <Link to="/signup">Sign Up</Link>
+          </Button>
         </div>
 
         <button
@@ -80,21 +69,12 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex gap-3 pt-2">
-            {user ? (
-              <Button variant="navOutline" size="sm" onClick={() => { signOut(); setMobileOpen(false); }}>
-                <LogOut className="h-4 w-4 mr-1" />
-                Log Out
-              </Button>
-            ) : (
-              <>
-                <Button variant="navOutline" size="sm" asChild>
-                  <Link to="/login" onClick={() => setMobileOpen(false)}>Login</Link>
-                </Button>
-                <Button variant="navFilled" size="sm" asChild>
-                  <Link to="/signup" onClick={() => setMobileOpen(false)}>Sign Up</Link>
-                </Button>
-              </>
-            )}
+            <Button variant="navOutline" size="sm" asChild>
+              <Link to="/login" onClick={() => setMobileOpen(false)}>Login</Link>
+            </Button>
+            <Button variant="navFilled" size="sm" asChild>
+              <Link to="/signup" onClick={() => setMobileOpen(false)}>Sign Up</Link>
+            </Button>
           </div>
         </div>
       )}
