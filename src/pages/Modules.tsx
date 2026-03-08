@@ -383,6 +383,24 @@ const ModuleCard = ({ mod, isHighlighted, onToggle, isExpanded }: {
                   </div>
                 </div>
               )}
+              {mod.careers.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Briefcase className="h-4 w-4 text-foreground" />
+                    <span className="text-sm font-semibold text-foreground">Career paths</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {mod.careers.map((career) => (
+                      <span
+                        key={career}
+                        className="text-xs font-medium px-3 py-1.5 bg-muted text-muted-foreground border border-border rounded-full"
+                      >
+                        {career}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
               {feedsFromModules.length === 0 && leadsToModules.length === 0 && (
                 <p className="text-sm text-muted-foreground italic">
                   This is a standalone module with no direct prerequisite chain.
