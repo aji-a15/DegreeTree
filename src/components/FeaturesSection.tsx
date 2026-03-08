@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BookOpen, GitBranch, BarChart3, Search } from "lucide-react";
+import { BookOpen, GitBranch, Compass, Search } from "lucide-react";
 
 const features = [
   {
