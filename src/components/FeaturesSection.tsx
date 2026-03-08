@@ -13,9 +13,9 @@ const features = [
     description: "Visualize how foundational topics branch into advanced subjects across all four years.",
   },
   {
-    icon: BarChart3,
-    title: "Analytics & Insights",
-    description: "See how first-year concepts cultivate skills essential for academia and industry success.",
+    icon: Compass,
+    title: "Topic Explorer",
+    description: "Browse and search CS topics across all four years to see how foundational concepts evolve.",
   },
   {
     icon: Search,
