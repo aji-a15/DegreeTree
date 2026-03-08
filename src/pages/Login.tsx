@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,9 +35,8 @@ const Login = () => {
         return;
       }
 
+      login(data.user);
       setMessage("Login successful");
-      console.log("Logged in user:", data.user);
-
       navigate("/modules");
     } catch (error) {
       setMessage("Something went wrong");
