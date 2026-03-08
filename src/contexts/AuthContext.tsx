@@ -36,7 +36,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const validateEmail = (email: string): string | null => {
+    if (!email.endsWith("@mumail.ie")) {
+      return "Only Maynooth University emails (@mumail.ie) are allowed.";
+    }
+    return null;
+  };
+
   const signUp = async (email: string, password: string) => {
+    const emailError = validateEmail(email);
+    if (emailError) return { error: emailError };
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -47,6 +57,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signIn = async (email: string, password: string) => {
+    const emailError = validateEmail(email);
+    if (emailError) return { error: emailError };
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return { error: error.message };
     return { error: null };
