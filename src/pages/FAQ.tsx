@@ -12,27 +12,35 @@ import {
 const faqs = [
   {
     question: "What programming language is taught in first year?",
-    answer: "Python is the primary language used in CS101 — Introduction to Programming. It's chosen for its readability and broad applicability.",
+    answer: "Java is the primary language used in CS161 — Introduction to Computer Science I. Previous programming experience is helpful but not required.",
   },
   {
     question: "Do I need prior coding experience?",
-    answer: "No. The first-year modules are designed to take you from zero knowledge to a solid foundation in programming and computer science fundamentals.",
+    answer: "No. The first-year modules like CS161 and CS171 are designed to take you from zero knowledge to a solid foundation in programming and computer science fundamentals.",
   },
   {
     question: "How does first-year maths connect to later modules?",
-    answer: "Discrete mathematics, logic, and graph theory from CS103 are directly used in algorithms, databases, AI, and cryptography modules in later years.",
+    answer: "Logic, truth tables, and complexity from CS172 — Computer Systems II are directly used in algorithms, computation theory, cryptography, and AI modules in later years.",
   },
   {
-    question: "Can I track my progress through the degree?",
-    answer: "Yes! Create a DegreeTree account to build a personalized learning profile that tracks your progress and shows how foundational modules contribute to your journey.",
+    question: "What pages are available on DegreeTree?",
+    answer: "You can explore the Modules page to browse all modules across Years 1–4, the Topics page to discover grouped topic areas and which modules cover them, the About page, and this FAQ.",
   },
   {
     question: "What career paths do these modules lead to?",
-    answer: "First-year foundations open doors to software engineering, data science, cybersecurity, AI/ML research, systems architecture, and many more fields.",
+    answer: "The degree covers software engineering, data science, cybersecurity, AI/ML, robotics, computer graphics, networking, and many more fields through its Year 1–4 modules.",
   },
   {
     question: "How are modules connected across years?",
-    answer: "DegreeTree visualizes these connections. For example, Data Structures (Year 1) feeds directly into Algorithms (Year 2), Databases (Year 3), and Distributed Systems (Year 4).",
+    answer: "DegreeTree organises modules by year (1–4). For example, CS161 & CS162 (Year 1 programming) build into CS210 & CS211 (Year 2 data structures & algorithms), which feed into Year 3 and 4 modules like Software Design, AI, and Distributed Systems.",
+  },
+  {
+    question: "How many modules are there in total?",
+    answer: "There are modules spread across all four years — from foundational topics like programming and computer systems in Year 1, to specialised areas like Quantum Computing, Robotics, and Computer Vision in Year 4.",
+  },
+  {
+    question: "What does the Topics page show?",
+    answer: "The Topics page groups related areas together (e.g. 'AI & Machine Learning', 'Security & Cryptography') and shows you which modules fall under each topic area.",
   },
 ];
 
