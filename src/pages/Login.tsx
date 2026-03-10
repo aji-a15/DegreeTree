@@ -17,6 +17,7 @@ const Login = () => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMessage("");
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {

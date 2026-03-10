@@ -1,44 +1,38 @@
-import { useState } from "react";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const navigate = useNavigate();
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMessage("");
+
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement).value;
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setMessage(data.message || "Sign up failed");
-        return;
+      if (response.ok) {
+        alert(data.message);
+        window.location.href = "/login";
+      } else {
+        alert(data.message || "Signup failed");
       }
-
-      setMessage("Account created successfully");
-      navigate("/login");
     } catch (error) {
-      setMessage("Something went wrong");
-      console.error(error);
+      console.error("Signup error:", error);
+      alert("Signup failed");
     }
   };
 
@@ -63,8 +57,6 @@ const SignUp = () => {
                 type="text"
                 placeholder="Your name"
                 className="bg-muted border-border"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -75,8 +67,6 @@ const SignUp = () => {
                 type="email"
                 placeholder="firstname.lastname.year@mumail.ie"
                 className="bg-muted border-border"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -87,14 +77,8 @@ const SignUp = () => {
                 type="password"
                 placeholder="••••••••"
                 className="bg-muted border-border"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-
-            {message && (
-              <p className="text-sm text-center text-muted-foreground">{message}</p>
-            )}
 
             <Button type="submit" className="w-full" size="lg">
               Create Account
