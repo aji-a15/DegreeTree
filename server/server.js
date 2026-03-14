@@ -38,6 +38,8 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+const mumailPattern = /^[a-zA-Z]+\.[a-zA-Z]+\.\d{4}@mumail\.ie$/;
+
 app.get("/", (req, res) => {
   res.send("Backend running");
 });
@@ -52,6 +54,12 @@ app.post("/api/auth/signup", async (req, res) => {
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    if (!mumailPattern.test(email)) {
+      return res.status(400).json({
+        message: "Incorrect email format. Please enter your Maynooth University email.",
+      });
     }
 
     const existingUser = await User.findOne({ email });
@@ -90,6 +98,12 @@ app.post("/api/auth/login", async (req, res) => {
 
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    if (!mumailPattern.test(email)) {
+      return res.status(400).json({
+        message: "Incorrect email format. Please enter your Maynooth University email.",
+      });
     }
 
     const user = await User.findOne({ email });

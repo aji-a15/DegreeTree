@@ -1,73 +1,71 @@
-# Welcome to your Lovable project
+# DegreeTree
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+DegreeTree is a full-stack web application designed to help Computer Science students at Maynooth University understand the structure of their degree. The application allows students to explore module relationships, see how topics connect across different years, and understand how modules lead into each other.
 
-## How can I edit this code?
+The project was developed as a Final Year Project and aims to make the Computer Science curriculum easier to visualise compared to traditional module listings.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+User registration and login system.
+Secure password storage using bcrypt hashing.
+Authentication-protected pages.
+Interactive module exploration interface.
+Visual highlighting of module dependencies and connections.
+MongoDB database for storing user accounts.
+Email validation restricting registration to Maynooth University emails.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Technologies Used
 
-Changes made via Lovable will be committed automatically to this repo.
+**Frontend:**
 
-**Use your preferred IDE**
+React
+TypeScript
+Tailwind CSS
+shadcn/ui
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Backend:**
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Node.js
+Express
 
-Follow these steps:
+Database:
+MongoDB
+Mongoose
+
+**Security:**
+
+bcrypt password hashing
+
+**Installation**
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/aji-a15/fyp.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate into the project.
+cd FYP
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Backend Setup, navigate to the server folder.
+cd server
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Install dependencies.
+npm install
+
+# Step 5: Create .env file and add:
+MONGO_URI=mongodb+srv://<username>:<password>@database.mongodb.net/degreetree
+PORT=5000
+
+# Step 6: Frontend Setup, open a new terminal and install dependencies.
+npm install
+
+# Step 7: Start the development server.
 npm run dev
+
+# Frontend will run on 
+http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)

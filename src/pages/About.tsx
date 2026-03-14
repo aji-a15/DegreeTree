@@ -26,13 +26,13 @@ const About = () => {
                 The project demonstrates that first-year modules aren't just introductory hurdles. They're the roots of a vast tree of knowledge that extends into advanced coursework, professional careers, and cutting-edge research.
               </p>
               <p>
-                Whether you're a first-year student wondering why discrete maths matters, or an educator looking for ways to show the interconnectedness of the CS curriculum, DegreeTree provides a clear, visual, and interactive way to explore these connections.
+                Whether you're a first-year student wondering why Computer Systems matters, or why Algorithm and Data Structures are important, DegreeTree provides a clear, visual, and interactive way to explore these connections.
               </p>
 
               <div className="p-6 bg-card rounded-lg border border-border mt-8">
                 <h3 className="text-lg font-serif font-bold text-foreground mb-3">Our Mission</h3>
                 <p>
-                  To provide a user-friendly environment for professionals, educators, and students to investigate core CS concepts, showing their real-world applications and linking them to advanced computer science topics.
+                  To provide a user-friendly environment for professionals, educators, and students to investigate core Computer Science concepts, showing their real-world applications and linking them to advanced computer science topics.
                 </p>
               </div>
             </div>

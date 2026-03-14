@@ -4,10 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [message, setMessage] = useState("");
+
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMessage("");
 
     const name = (document.getElementById("name") as HTMLInputElement).value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
@@ -25,14 +29,14 @@ const SignUp = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.message);
+        setMessage("Account created successfully.");
         window.location.href = "/login";
       } else {
-        alert(data.message || "Signup failed");
+        setMessage(data.message || "Signup failed");
       }
     } catch (error) {
       console.error("Signup error:", error);
-      alert("Signup failed");
+      setMessage("Signup failed");
     }
   };
 
@@ -79,6 +83,10 @@ const SignUp = () => {
                 className="bg-muted border-border"
               />
             </div>
+
+            {message && (
+              <p className="text-sm text-red-500">{message}</p>
+            )}
 
             <Button type="submit" className="w-full" size="lg">
               Create Account
